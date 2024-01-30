@@ -5,7 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 const MyNav = (props) => (
   <Navbar expand="lg" className="bg-black ">
-    <Container className="">
+    <Container>
       <Navbar.Brand className="text-white" href="#">
         {props.title} - Restaurant
       </Navbar.Brand>
