@@ -37,14 +37,13 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import horror from "../data/horror.json";
 
 class CardBooks extends Component {
   render() {
     return (
       <div className="container">
         <div className="row justify-content-evenly justify-content-sm-between g-4 mx-1">
-          {horror.map((film) => (
+          {this.props.films.slice(0, 8).map((film) => (
             <Card
               key={film.asin}
               className="col-2 h-30 px-0 rounded-5"

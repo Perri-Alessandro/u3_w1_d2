@@ -4,6 +4,7 @@ import MyNav from "./components/MyNavComponent";
 import MyFooter from "./components/MyFooterComponent";
 import Welcome from "./components/WelcomeComponent";
 import CardBooks from "./components/AllTheBooks";
+import horror from "./data/horror.json";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       </header>
       <main className="">
         <Welcome />
-        <CardBooks />
+        <CardBooks films={horror} />
       </main>
       <MyFooter
         tit1="NOI"
