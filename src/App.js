@@ -10,7 +10,7 @@ function App() {
       <header className="">
         <MyNav title="Magic" />
       </header>
-      <Alert>
+      <Alert></Alert>
       <MyFooter tit1="NOI" tit2="I NOSTRI PRODOTTI" tit3="HOME"></MyFooter>
     </div>
   );
