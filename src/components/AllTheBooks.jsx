@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import horror from "../data/horror.json";
 
-function BasicExample() {
+function CardBooks() {
   return (
     <div className="container">
       <div className="row justify-content-between g-2 mx-2">
@@ -32,7 +32,7 @@ function BasicExample() {
   );
 }
 
-export default BasicExample;
+export default CardBooks;
 
 // import Button from "react-bootstrap/Button";
 // import Card from "react-bootstrap/Card";
