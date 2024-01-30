@@ -1,51 +1,59 @@
-import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-const MyNav = (props) => (
-  <Navbar expand="lg" className="bg-black ">
-    <Container>
-      <Navbar.Brand className="text-white" href="#">
-        {props.title} - Restaurant
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
-      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-        <Nav>
-          <Nav.Link className="text-white" href="#">
-            Home
-          </Nav.Link>
-          <Nav.Link className="text-white" href="#">
-            About
-          </Nav.Link>
-          <Nav.Link className="text-white" href="#">
-            Broswe
-          </Nav.Link>
-
-          <NavDropdown
-            title="Our Services"
-            id="basic-nav-dropdown"
-            className="bg-white"
+function NavScrollExample(props) {
+  return (
+    <Navbar expand="lg" className="bg-black fixed-top">
+      <Container fluid>
+        <Navbar.Brand href="#" className="text-white">
+          {" "}
+          {props.title} Restaurant
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: "100px" }}
+            navbarScroll
           >
-            <NavDropdown.Item className="text-white" href="#action/3.1">
+            <Nav.Link href="#action1" className="text-white">
               Home
-            </NavDropdown.Item>
-            <NavDropdown.Item className="text-white" href="#action/3.2">
-              Product
-            </NavDropdown.Item>
-            <NavDropdown.Item className="text-white" href="#action/3.3">
-              Services
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item className="text-white" href="#action/3.4">
-              Our History
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-      </Navbar.Collapse>
-    </Container>
-  </Navbar>
-);
+            </Nav.Link>
+            <Nav.Link href="#action2" className="text-white">
+              About
+            </Nav.Link>
+            <NavDropdown title="Broswe" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3" className="text-center ">
+                ueee
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action4" className="text-center ">
+                Contact us
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action5" className="text-center">
+                Something else here
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="What are you looking for..?"
+              className="me-2 rounded-4"
+              aria-label="Search"
+            />
+            <Button variant="outline-success" className="rounded-4 border-2">
+              Search
+            </Button>
+          </Form>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
 
-export default MyNav;
+export default NavScrollExample;

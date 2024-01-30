@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+#navbarScrollingDropdown {
+  color: white;
+}
+
+div > header > nav > div > button.navbar-toggler {
+  background-color: white;
+}

@@ -11,9 +11,16 @@ function App() {
       <header className="">
         <MyNav title="Magic" />
       </header>
-      <Welcome />
-      <CardBooks />
-      <MyFooter tit1="NOI" tit2="I NOSTRI PRODOTTI" tit3="HOME"></MyFooter>
+      <main className="">
+        <Welcome />
+        <CardBooks />
+      </main>
+      <MyFooter
+        tit1="NOI"
+        tit2="I NOSTRI PRODOTTI"
+        tit3="HOME"
+        tit4="PROVA"
+      ></MyFooter>
     </div>
   );
 }
