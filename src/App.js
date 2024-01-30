@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MyNav from "./components/MyNavComponent";
 import MyFooter from "./components/MyFooterComponent";
 import Alert from "./components/WelcomeComponent";
+import BasicExample from "./components/AllTheBooks";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <MyNav title="Magic" />
       </header>
       <Alert></Alert>
+      <BasicExample></BasicExample>
       <MyFooter tit1="NOI" tit2="I NOSTRI PRODOTTI" tit3="HOME"></MyFooter>
     </div>
   );
