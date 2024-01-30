@@ -4,18 +4,18 @@ import Alert from "react-bootstrap/Alert";
 function AdditionalContentExample() {
   const [showAlert, setShowAlert] = useState(true);
 
-  const handleCloseAlert = () => {
+  const chiudiAlert = () => {
     setShowAlert(false);
   };
 
-  const handlePageClick = () => {
+  const pageClick = () => {
     setShowAlert(false);
   };
 
   return (
     <>
       {showAlert && (
-        <Alert variant="success" onClose={handleCloseAlert} dismissible>
+        <Alert variant="success" onClose={chiudiAlert} dismissible>
           <Alert.Heading>Hey, nice to see you</Alert.Heading>
           <p>
             Aww yeah, you successfully read this important alert message. This
@@ -29,7 +29,7 @@ function AdditionalContentExample() {
           </p>
         </Alert>
       )}
-      <div onClick={handlePageClick}>
+      <div onClick={pageClick}>
         {/* Tuo contenuto della pagina */}
         <p className="text-danger fs-2">
           Ciao, questa è la nuova pagina ristorante
