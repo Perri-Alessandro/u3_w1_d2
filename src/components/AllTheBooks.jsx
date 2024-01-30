@@ -61,7 +61,7 @@ class CardBooks extends Component {
                 <Card.Text>
                   {film.category} <br /> ${film.price}
                 </Card.Text>
-                <Button variant="primary">Buy it</Button>
+                <Button variant="warning">Buy it</Button>
               </Card.Body>
             </Card>
           ))}
