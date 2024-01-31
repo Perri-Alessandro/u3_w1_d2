@@ -45,6 +45,7 @@ function NavScrollExample(props) {
               placeholder="What are you looking for..?"
               className="me-2 rounded-4"
               aria-label="Search"
+              onChange={(e) => props.handleSearch(e.target.value)}
             />
             <Button variant="outline-success" className="rounded-4 border-2">
               Search

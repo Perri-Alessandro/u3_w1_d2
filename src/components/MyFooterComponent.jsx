@@ -6,7 +6,7 @@ const MyFooter = (param) => {
   useEffect(() => {
     let annoCorrente = new Date().getFullYear();
     let eccolo =
-      "&copy;" +
+      "©" +
       annoCorrente +
       " My Start Page. All rights reserved. Created by Perri Alessandro";
 
@@ -51,8 +51,8 @@ const MyFooter = (param) => {
           </div>
         </div>
       </div>
-      <div>
-        <p className="mt-3" id="anno" style={{ fontSize: "0.8em" }}>
+      <div className="row">
+        <p className="mt-3 col" id="anno" style={{ fontSize: "0.8em" }}>
           {scriptResult}
         </p>
       </div>
