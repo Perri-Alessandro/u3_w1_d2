@@ -3,6 +3,22 @@ import React, { useEffect, useState } from "react";
 const MyFooter = (param) => {
   const [scriptResult, setScriptResult] = useState("");
 
+  const mobileStyles = {
+    fontSize: "0.65em",
+  };
+
+  const desktopStyles = {
+    fontSize: "0.9em",
+  };
+
+  const mobileBottomStyles = {
+    fontSize: "0.6em",
+  };
+
+  const desktopBottomStyles = {
+    fontSize: "0.8em",
+  };
+
   useEffect(() => {
     let annoCorrente = new Date().getFullYear();
     let eccolo =
@@ -12,11 +28,17 @@ const MyFooter = (param) => {
 
     setScriptResult(eccolo);
   }, []);
+
   return (
     <footer className="container-fluid bg-black text-white fixed-bottom">
       <div
         className="row justify-content-between mt-2"
-        style={{ fontSize: "0.9em" }}
+        style={{
+          fontSize:
+            window.innerWidth < 768
+              ? mobileStyles.fontSize
+              : desktopStyles.fontSize,
+        }}
       >
         <div className="col">
           <div className="row flex-column">
@@ -52,7 +74,16 @@ const MyFooter = (param) => {
         </div>
       </div>
       <div className="row">
-        <p className="mt-3 col" id="anno" style={{ fontSize: "0.8em" }}>
+        <p
+          className="mt-4 col"
+          id="anno"
+          style={{
+            fontSize:
+              window.innerWidth < 768
+                ? mobileBottomStyles.fontSize
+                : desktopBottomStyles.fontSize,
+          }}
+        >
           {scriptResult}
         </p>
       </div>

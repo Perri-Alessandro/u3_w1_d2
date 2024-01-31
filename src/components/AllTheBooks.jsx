@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BookCard from "./SingleBook";
+import BookCard from "../components/SingleBook";
 
 class CardBooks extends Component {
   render() {
