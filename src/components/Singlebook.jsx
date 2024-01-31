@@ -3,14 +3,28 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 class BookCard extends Component {
+  state = {
+    selected: false,
+  };
+
+  handleToggleSelected = () => {
+    this.setState((prevState) => ({
+      selected: !prevState.selected,
+    }));
+  };
+
   render() {
     const { film } = this.props;
+    const { selected } = this.state;
 
     return (
       <Card
         key={film.asin}
-        className="col-2 h-30 px-0 rounded-5"
+        className={`col-2 h-30 px-0 rounded-5 ${
+          selected ? "border-danger border-3" : ""
+        }`}
         style={{ width: "15rem" }}
+        onClick={this.handleToggleSelected}
       >
         <Card.Img
           className="rounded-top-5"
