@@ -8,9 +8,9 @@ class BookCard extends Component {
   };
 
   handleToggleSelected = () => {
-    this.setState((prevState) => ({
-      selected: !prevState.selected,
-    }));
+    this.setState({
+      selected: !this.state.selected,
+    });
   };
 
   render() {
