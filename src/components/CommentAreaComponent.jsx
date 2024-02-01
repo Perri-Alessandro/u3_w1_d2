@@ -1,16 +1,18 @@
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { Component } from "react";
 import CommentList from "./CommentList";
 
 class CommentArea extends Component {
-  state = {
-    selected: false,
-    comment: "",
-    rate: "", // Aggiunto uno stato per la valutazione
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: false,
+      comment: "",
+      rate: "",
+      comments: [],
+    };
+  }
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -21,22 +23,37 @@ class CommentArea extends Component {
     e.preventDefault();
 
     const { comment, rate } = this.state;
+    const { bookId } = this.props;
 
-    // Assicurati di ottenere correttamente l'ID del libro dalla prop
-    const bookId = this.props.bookId;
+    if (!comment || !rate) {
+      alert("Inserisci sia il commento che il rate prima di inviare.");
+      return;
+    }
+
+    this.addComment({
+      comment: comment,
+      rate: rate,
+      elementId: bookId,
+    });
+
+    // Pulisci lo stato dopo l'invio del commento
+    this.setState({
+      comment: "",
+      rate: "",
+    });
+  };
+
+  addComment = (commentData) => {
+    const { bookId } = this.props;
 
     fetch(`https://striveschool-api.herokuapp.com/api/comments/${bookId}`, {
-      method: "POST", // Cambiato a "POST" per aggiungere un nuovo commento
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWJiYWRiMzViMjYxNTAwMTk4YTY5NzAiLCJpYXQiOjE3MDY3OTg1MTUsImV4cCI6MTcwODAwODExNX0.hLINTXir2hji55caKKw6jHmN-AGmTh_1VyORaXMJgVA",
       },
-      body: JSON.stringify({
-        comment: comment,
-        rate: rate,
-        elementId: bookId, // Includi l'ID del libro nell'oggetto JSON
-      }),
+      body: JSON.stringify(commentData),
     })
       .then((response) => {
         if (response.ok) {
@@ -48,7 +65,9 @@ class CommentArea extends Component {
       })
       .then((data) => {
         console.log(data, "HO INVIATO I SEGUENTI DATI AL SERVER");
-        // Aggiorna lo stato o esegui altre azioni necessarie dopo aver inviato il commento
+        this.setState({
+          comments: data.comments,
+        });
       })
       .catch((error) => {
         console.error("ERRORE IN INVIO DATI A SERVER:", error);
@@ -73,6 +92,7 @@ class CommentArea extends Component {
             placeholder="Inserisci qui una recensione"
             value={this.state.comment}
             onChange={this.handleChange}
+            onClick={(e) => e.stopPropagation()} // Impedisci la propagazione dell'evento onClick
           />
 
           <label htmlFor="rate" className="col-2 text-white">
@@ -86,10 +106,11 @@ class CommentArea extends Component {
             max="5"
             value={this.state.rate}
             onChange={this.handleChange}
+            onClick={(e) => e.stopPropagation()} // Impedisci la propagazione dell'evento onClick
           />
         </form>
 
-        <CommentList bookId={this.props.bookId} />
+        <CommentList comments={this.state.comments} />
       </div>
     );
   }

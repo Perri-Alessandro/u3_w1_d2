@@ -4,8 +4,7 @@ const CommentList = ({ bookId }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    // Fetch delle recensioni dal server quando il componente viene montato
-    fetch("https://striveschool-api.herokuapp.com/api/comments/${bookId}", {
+    fetch(`https://striveschool-api.herokuapp.com/api/comments/${bookId}`, {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWJiYWRiMzViMjYxNTAwMTk4YTY5NzAiLCJpYXQiOjE3MDY3OTg1MTUsImV4cCI6MTcwODAwODExNX0.hLINTXir2hji55caKKw6jHmN-AGmTh_1VyORaXMJgVA",

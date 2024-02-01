@@ -12,6 +12,11 @@ class CardBooks extends Component {
     });
   };
 
+  addComment = (commentData) => {
+    // Implementa la logica necessaria per aggiungere il commento, se necessario
+    console.log("Aggiungi commento:", commentData);
+  };
+
   render() {
     const { films, searchTerm } = this.props;
 
@@ -27,6 +32,7 @@ class CardBooks extends Component {
               key={film.asin}
               film={film}
               onToggleSelected={this.handleToggleSelected}
+              addComment={this.addComment}
             />
           ))}
         </div>
