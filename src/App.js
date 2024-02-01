@@ -6,6 +6,8 @@ import MyFooter from "./components/MyFooterComponent";
 import Welcome from "./components/WelcomeComponent";
 import CardBooks from "./components/AllTheBooks";
 import horror from "./data/horror.json";
+// import CommentArea from "./CommentAreaComponent";
+//
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
