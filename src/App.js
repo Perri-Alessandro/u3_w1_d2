@@ -6,8 +6,12 @@ import MyFooter from "./components/MyFooterComponent";
 import Welcome from "./components/WelcomeComponent";
 import CardBooks from "./components/AllTheBooks";
 import horror from "./data/horror.json";
-// import CommentArea from "./CommentAreaComponent";
-//
+import romance from "./data/romance.json";
+import history from "./data/history.json";
+import fantasy from "./data/fantasy.json";
+import scifi from "./data/scifi.json";
+import { Container } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,7 +27,15 @@ function App() {
       </header>
       <main className="">
         <Welcome />
-        <CardBooks films={horror} searchTerm={searchTerm} />
+        <Container>
+          <Row className="justify-content-evenly justify-content-sm-between g-4 m-1">
+            <CardBooks films={horror} searchTerm={searchTerm} />
+            <CardBooks films={romance} searchTerm={searchTerm} />
+            <CardBooks films={history} searchTerm={searchTerm} />
+            <CardBooks films={fantasy} searchTerm={searchTerm} />
+            <CardBooks films={scifi} searchTerm={searchTerm} />
+          </Row>
+        </Container>
       </main>
       <MyFooter
         tit1="NOI"

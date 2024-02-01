@@ -10,13 +10,11 @@ class CardBooks extends Component {
     );
 
     return (
-      <div className="container">
-        <div className="row justify-content-evenly justify-content-sm-between g-4 mx-1">
-          {filteredFilms.map((film) => (
-            <BookCard key={film.asin} film={film} />
-          ))}
-        </div>
-      </div>
+      <>
+        {filteredFilms.slice(0, 8).map((film) => (
+          <BookCard className="col" key={film.asin} film={film} />
+        ))}
+      </>
     );
   }
 }

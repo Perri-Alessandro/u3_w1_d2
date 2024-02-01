@@ -17,23 +17,16 @@ function Welcome() {
       {showAlert && (
         <Alert variant="success" onClose={chiudiAlert} dismissible>
           <Alert.Heading>Hey, nice to see you</Alert.Heading>
-          <p>
-            Aww yeah, you successfully read this important alert message. This
-            example text is going to run a bit longer so that you can see how
-            spacing within an alert works with this kind of content.
-          </p>
+          <p>Welcome in my new restaurant page</p>
           <hr />
           <p className="mb-0">
-            Whenever you need to, be sure to use margin utilities to keep things
-            nice and tidy.
+            Click on the card image to read or add a comments
           </p>
         </Alert>
       )}
       <div onClick={pageClick}>
         {/* Tuo contenuto della pagina */}
-        <p className="text-danger fs-2">
-          Ciao, questa è la nuova pagina ristorante
-        </p>
+        <p className=" text-danger fs-5">Click here to hide the alert</p>
       </div>
     </>
   );

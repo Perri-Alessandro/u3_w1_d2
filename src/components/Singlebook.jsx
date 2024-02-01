@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import CommentArea from "./CommentArea";
 
 class BookCard extends Component {
   state = {
@@ -24,7 +25,6 @@ class BookCard extends Component {
           selected ? "border-danger border-3" : ""
         }`}
         style={{ width: "15rem" }}
-        onClick={this.handleToggleSelected}
       >
         <Card.Img
           className="rounded-top-5"
@@ -32,6 +32,7 @@ class BookCard extends Component {
           variant="top"
           src={film.img}
           alt={film.title}
+          onClick={this.handleToggleSelected}
         />
         <Card.Body className="row flex-column justify-content-between mx-0">
           <Card.Title style={{ fontSize: "1em" }}>{film.title}</Card.Title>
@@ -41,7 +42,7 @@ class BookCard extends Component {
           <Button className="rounded-4 fs-4 border-primary" variant="warning">
             Buy it
           </Button>
-          {/* {selected} */}
+          {selected && <CommentArea asin={film.asin} />}
         </Card.Body>
       </Card>
     );

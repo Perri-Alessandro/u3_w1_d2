@@ -30,7 +30,7 @@ const MyFooter = (param) => {
   }, []);
 
   return (
-    <footer className="container-fluid bg-black text-white fixed-bottom">
+    <footer className="container-fluid bg-black text-white">
       <div
         className="row justify-content-between mt-2"
         style={{
