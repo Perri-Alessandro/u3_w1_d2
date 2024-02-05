@@ -1,15 +1,18 @@
 import { Component } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
+import Spinner from "./Spinner";
 
 class CommentArea extends Component {
   state = {
     comments: [],
+    isLoading: false,
   };
 
-  getComment = () => {
-    const { asin } = this.props;
+  getComment = (asin) => {
     if (asin) {
+      this.setState({ isLoading: true }); // Aggiungi questa riga
+
       fetch("https://striveschool-api.herokuapp.com/api/comments/" + asin, {
         headers: {
           Authorization:
@@ -26,34 +29,35 @@ class CommentArea extends Component {
         .then((arrayData) => {
           this.setState({
             comments: arrayData,
+            isLoading: false,
           });
         })
         .catch((err) => {
           console.log("ERRORE NEL CONTATTARE IL SERVER", err);
+          this.setState({ isLoading: false });
         });
     }
   };
 
   componentDidMount() {
-    this.getComment();
+    this.getComment(this.props.asin);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.asin !== prevProps.asin) {
-      this.getComment();
+      console.log("Nuovo asin:", this.props.asin);
+      this.getComment(this.props.asin);
     }
   }
 
   render() {
-    const { asin } = this.props;
-    const { comments } = this.state;
-
     return (
-      <div>
-        {asin ? (
+      <div className="col-3">
+        {this.props.asin ? (
           <>
-            <CommentList commentsToShow={comments} />
-            <AddComment asin={asin} />
+            {this.state.isLoading && <Spinner />}
+            <CommentList commentsToShow={this.state.comments} />
+            <AddComment asin={this.props.asin} />
           </>
         ) : (
           <p>Seleziona un libro per vedere i commenti</p>

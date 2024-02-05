@@ -1,14 +1,21 @@
 import React, { Component } from "react";
 import BookCard from "../components/SingleBook";
+import CommentArea from "./CommentArea";
 
 class CardBooks extends Component {
-  handleBookClick = (asin) => {
-    console.log(`BOOK CON ASIN ${asin} CLICCATO`);
-    this.setState({ selectedAsin: asin });
+  state = {
+    selectedBookAsin: null,
+  };
+
+  changeSelectedBook = (asin) => {
+    this.setState({
+      selectedBookAsin: asin,
+    });
   };
 
   render() {
     const { films, searchTerm } = this.props;
+    const { selectedBookAsin } = this.state;
 
     const filteredFilms = films.filter((film) =>
       film.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -20,9 +27,11 @@ class CardBooks extends Component {
           <BookCard
             key={film.asin}
             film={film}
-            onClick={() => this.handleBookClick(film.asin)}
+            selectedBook={selectedBookAsin}
+            changeSelectedBook={this.changeSelectedBook}
           />
         ))}
+        <CommentArea asin={selectedBookAsin} />
       </>
     );
   }

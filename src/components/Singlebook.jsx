@@ -14,16 +14,16 @@ class BookCard extends Component {
   };
 
   render() {
-    const { film, onClick } = this.props;
-    const { selected } = this.state;
+    const { film } = this.props;
 
     return (
       <Card
         key={film.asin}
         className={`col-2 h-30 px-0 rounded-5 ${
-          selected ? "border-danger border-3" : ""
+          this.props.selectedBook === film.asin ? "border-danger border-3" : ""
         }`}
         style={{ width: "15rem" }}
+        onClick={() => this.props.changeSelectedBook(film.asin)}
       >
         <Card.Img
           className="rounded-top-5"
@@ -31,10 +31,6 @@ class BookCard extends Component {
           variant="top"
           src={film.img}
           alt={film.title}
-          onClick={() => {
-            this.handleToggleSelected();
-            onClick && onClick(film.asin);
-          }}
         />
         <Card.Body className="row flex-column justify-content-between mx-0">
           <Card.Title style={{ fontSize: "1em" }}>{film.title}</Card.Title>

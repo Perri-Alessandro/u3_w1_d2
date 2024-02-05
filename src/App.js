@@ -10,20 +10,13 @@ import romance from "./data/romance.json";
 import history from "./data/history.json";
 import fantasy from "./data/fantasy.json";
 import scifi from "./data/scifi.json";
-import { Container, Row, Col } from "react-bootstrap";
-import CommentArea from "./components/CommentArea";
+import { Container, Row } from "react-bootstrap";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedAsin, setSelectedAsin] = useState(null);
 
   const handleSearch = (term) => {
     setSearchTerm(term);
-  };
-
-  const handleBookClick = (asin) => {
-    console.log(`BOOK CON ASIN ${asin} CLICCATO`);
-    setSelectedAsin(asin);
   };
 
   return (
@@ -34,39 +27,12 @@ function App() {
       <main className="">
         <Welcome />
         <Container>
-          <Row>
-            <Col>
-              <Row className="justify-content-evenly justify-content-sm-between g-4 m-1">
-                <CardBooks
-                  films={horror}
-                  searchTerm={searchTerm}
-                  onBookClick={handleBookClick}
-                />
-                <CardBooks
-                  films={romance}
-                  searchTerm={searchTerm}
-                  onBookClick={handleBookClick}
-                />
-                <CardBooks
-                  films={history}
-                  searchTerm={searchTerm}
-                  onBookClick={handleBookClick}
-                />
-                <CardBooks
-                  films={fantasy}
-                  searchTerm={searchTerm}
-                  onBookClick={handleBookClick}
-                />
-                <CardBooks
-                  films={scifi}
-                  searchTerm={searchTerm}
-                  onBookClick={handleBookClick}
-                />
-              </Row>
-            </Col>
-            <Col>
-              <CommentArea asin={selectedAsin} />
-            </Col>
+          <Row className="justify-content-evenly justify-content-sm-between g-4 m-1">
+            <CardBooks films={horror} searchTerm={searchTerm} />
+            <CardBooks films={romance} searchTerm={searchTerm} />
+            <CardBooks films={history} searchTerm={searchTerm} />
+            <CardBooks films={fantasy} searchTerm={searchTerm} />
+            <CardBooks films={scifi} searchTerm={searchTerm} />
           </Row>
         </Container>
       </main>

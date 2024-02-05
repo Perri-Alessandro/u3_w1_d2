@@ -1,6 +1,5 @@
 import { Component } from "react";
-import { Form } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 class AddComment extends Component {
   state = {
@@ -11,7 +10,9 @@ class AddComment extends Component {
     },
   };
 
-  sendComment = () =>
+  sendComment = (e) => {
+    e.preventDefault();
+
     fetch("https://striveschool-api.herokuapp.com/api/comments/", {
       method: "POST",
       headers: {
@@ -24,25 +25,40 @@ class AddComment extends Component {
       .then((response) => {
         if (response.ok) {
           alert("RECENSIONE SALVATA");
+          this.setState({
+            comment: {
+              comment: "",
+              rate: 1,
+              elementId: this.props.asin,
+            },
+          });
           return response.json();
         } else {
           alert("LA RECENSIONE NON è STATA SALVATA");
         }
       })
-      //   SAPPIAMO GIà COSA ABBIAMO MANDATO, NON SERVE DATO DI RITORNO, BASTA SAPERE CHE LA RISPSOTA è OK
+      //   SAPPIAMO GIà COSA ABBIAMO MANDATO, NON SERVE DATO DI RITORNO
       .catch((err) => {
-        console.log("POST, ERRORE NELLA COMUNICAZIONE CON IL SERVER");
+        console.log("POST, ERRORE NELLA COMUNICAZIONE CON IL SERVER", err);
       });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.asin !== this.props.asin) {
+      this.setState({
+        comment: {
+          ...this.state.comment,
+          elementId: this.props.asin,
+        },
+      });
+    }
+  }
 
   render() {
+    const { asin } = this.props;
+
     return (
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(this.state.comment);
-          this.sendComment();
-        }}
-      >
+      <Form onSubmit={this.sendComment}>
         <Form.Label className="my-2">
           Lascia qui sotto una recensione ed un voto
         </Form.Label>
