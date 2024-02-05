@@ -10,7 +10,7 @@ import romance from "./data/romance.json";
 import history from "./data/history.json";
 import fantasy from "./data/fantasy.json";
 import scifi from "./data/scifi.json";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,13 +27,11 @@ function App() {
       <main className="">
         <Welcome />
         <Container>
-          <Row className="justify-content-evenly justify-content-sm-between g-4 m-1">
-            <CardBooks films={horror} searchTerm={searchTerm} />
-            <CardBooks films={romance} searchTerm={searchTerm} />
-            <CardBooks films={history} searchTerm={searchTerm} />
-            <CardBooks films={fantasy} searchTerm={searchTerm} />
-            <CardBooks films={scifi} searchTerm={searchTerm} />
-          </Row>
+          <CardBooks films={horror} searchTerm={searchTerm} />
+          <CardBooks films={romance} searchTerm={searchTerm} />
+          <CardBooks films={history} searchTerm={searchTerm} />
+          <CardBooks films={fantasy} searchTerm={searchTerm} />
+          <CardBooks films={scifi} searchTerm={searchTerm} />
         </Container>
       </main>
       <MyFooter

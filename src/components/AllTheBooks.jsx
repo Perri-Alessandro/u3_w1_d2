@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BookCard from "../components/SingleBook";
 import CommentArea from "./CommentArea";
+import { Col, Row } from "react-bootstrap";
 
 class CardBooks extends Component {
   state = {
@@ -8,9 +9,9 @@ class CardBooks extends Component {
   };
 
   changeSelectedBook = (asin) => {
-    this.setState({
-      selectedBookAsin: asin,
-    });
+    this.setState((prevState) => ({
+      selectedBookAsin: prevState.selectedBookAsin === asin ? null : asin,
+    }));
   };
 
   render() {
@@ -22,7 +23,7 @@ class CardBooks extends Component {
     );
 
     return (
-      <>
+      <Row className="justify-content-evenly  g-4 m-1">
         {filteredFilms.slice(0, 8).map((film) => (
           <BookCard
             key={film.asin}
@@ -31,8 +32,11 @@ class CardBooks extends Component {
             changeSelectedBook={this.changeSelectedBook}
           />
         ))}
-        <CommentArea asin={selectedBookAsin} />
-      </>
+
+        <Col md={2}>
+          <CommentArea asin={selectedBookAsin} />
+        </Col>
+      </Row>
     );
   }
 }

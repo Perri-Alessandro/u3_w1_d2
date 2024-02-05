@@ -52,7 +52,7 @@ class CommentArea extends Component {
 
   render() {
     return (
-      <div className="col-3">
+      <div>
         {this.props.asin ? (
           <>
             {this.state.isLoading && <Spinner />}

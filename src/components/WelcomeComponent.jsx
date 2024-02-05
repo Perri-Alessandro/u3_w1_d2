@@ -19,9 +19,7 @@ function Welcome() {
           <Alert.Heading>Hey, nice to see you</Alert.Heading>
           <p>Welcome in my new restaurant page</p>
           <hr />
-          <p className="mb-0">
-            Click on the card image to read or add a comments
-          </p>
+          <p className="mb-0">Click on the card to read or add a comments</p>
         </Alert>
       )}
       <div onClick={pageClick}>
