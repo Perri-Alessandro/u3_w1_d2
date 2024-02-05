@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import CommentArea from "./CommentArea";
 
 class BookCard extends Component {
   state = {
@@ -9,13 +8,13 @@ class BookCard extends Component {
   };
 
   handleToggleSelected = () => {
-    this.setState({
-      selected: !this.state.selected,
-    });
+    this.setState((prevState) => ({
+      selected: !prevState.selected,
+    }));
   };
 
   render() {
-    const { film } = this.props;
+    const { film, onClick } = this.props;
     const { selected } = this.state;
 
     return (
@@ -32,7 +31,10 @@ class BookCard extends Component {
           variant="top"
           src={film.img}
           alt={film.title}
-          onClick={this.handleToggleSelected}
+          onClick={() => {
+            this.handleToggleSelected();
+            onClick && onClick(film.asin);
+          }}
         />
         <Card.Body className="row flex-column justify-content-between mx-0">
           <Card.Title style={{ fontSize: "1em" }}>{film.title}</Card.Title>
@@ -42,7 +44,6 @@ class BookCard extends Component {
           <Button className="rounded-4 fs-4 border-primary" variant="warning">
             Buy it
           </Button>
-          {selected && <CommentArea asin={film.asin} />}
         </Card.Body>
       </Card>
     );

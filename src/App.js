@@ -10,14 +10,20 @@ import romance from "./data/romance.json";
 import history from "./data/history.json";
 import fantasy from "./data/fantasy.json";
 import scifi from "./data/scifi.json";
-import { Container } from "react-bootstrap";
-import { Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import CommentArea from "./components/CommentArea";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedAsin, setSelectedAsin] = useState(null);
 
   const handleSearch = (term) => {
     setSearchTerm(term);
+  };
+
+  const handleBookClick = (asin) => {
+    console.log(`BOOK CON ASIN ${asin} CLICCATO`);
+    setSelectedAsin(asin);
   };
 
   return (
@@ -28,12 +34,39 @@ function App() {
       <main className="">
         <Welcome />
         <Container>
-          <Row className="justify-content-evenly justify-content-sm-between g-4 m-1">
-            <CardBooks films={horror} searchTerm={searchTerm} />
-            <CardBooks films={romance} searchTerm={searchTerm} />
-            <CardBooks films={history} searchTerm={searchTerm} />
-            <CardBooks films={fantasy} searchTerm={searchTerm} />
-            <CardBooks films={scifi} searchTerm={searchTerm} />
+          <Row>
+            <Col>
+              <Row className="justify-content-evenly justify-content-sm-between g-4 m-1">
+                <CardBooks
+                  films={horror}
+                  searchTerm={searchTerm}
+                  onBookClick={handleBookClick}
+                />
+                <CardBooks
+                  films={romance}
+                  searchTerm={searchTerm}
+                  onBookClick={handleBookClick}
+                />
+                <CardBooks
+                  films={history}
+                  searchTerm={searchTerm}
+                  onBookClick={handleBookClick}
+                />
+                <CardBooks
+                  films={fantasy}
+                  searchTerm={searchTerm}
+                  onBookClick={handleBookClick}
+                />
+                <CardBooks
+                  films={scifi}
+                  searchTerm={searchTerm}
+                  onBookClick={handleBookClick}
+                />
+              </Row>
+            </Col>
+            <Col>
+              <CommentArea asin={selectedAsin} />
+            </Col>
           </Row>
         </Container>
       </main>
