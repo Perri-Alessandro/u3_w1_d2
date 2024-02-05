@@ -33,7 +33,7 @@ class CardBooks extends Component {
           />
         ))}
 
-        <Col md={2}>
+        <Col>
           <CommentArea asin={selectedBookAsin} />
         </Col>
       </Row>

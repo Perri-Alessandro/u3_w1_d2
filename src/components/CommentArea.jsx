@@ -2,6 +2,7 @@ import { Component } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import Spinner from "./Spinner";
+import { Col } from "react-bootstrap";
 
 class CommentArea extends Component {
   state = {
@@ -52,16 +53,21 @@ class CommentArea extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.asin ? (
-          <>
-            {this.state.isLoading && <Spinner />}
-            <CommentList commentsToShow={this.state.comments} />
-            <AddComment asin={this.props.asin} />
-          </>
-        ) : (
-          <p>Seleziona un libro per vedere i commenti</p>
-        )}
+      <div className="row justify-content-center">
+        <div
+          className="col-5 border border-2 border-black rounded-4 p-4 "
+          style={{ width: 500 }}
+        >
+          {this.props.asin ? (
+            <>
+              {this.state.isLoading && <Spinner />}
+              <CommentList commentsToShow={this.state.comments} />
+              <AddComment asin={this.props.asin} />
+            </>
+          ) : (
+            <p>Seleziona un libro per vedere i commenti</p>
+          )}
+        </div>
       </div>
     );
   }
