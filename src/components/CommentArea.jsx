@@ -1,17 +1,24 @@
-import { Component } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import Spinner from "./Spinner";
+import { useState, useEffect } from "react";
 
-class CommentArea extends Component {
-  state = {
-    comments: [],
-    isLoading: false,
-  };
+const CommentArea = ({ asin }) => {
+  // state = {
+  //   comments: [],
+  //   isLoading: false,
+  // };
 
-  getComment = (asin) => {
+  const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    getComment(asin);
+  }, [asin]);
+
+  const getComment = (asin) => {
     if (asin) {
-      this.setState({ isLoading: true }); // Aggiungi questa riga
+      setIsLoading(true);
 
       fetch("https://striveschool-api.herokuapp.com/api/comments/" + asin, {
         headers: {
@@ -27,49 +34,49 @@ class CommentArea extends Component {
           }
         })
         .then((arrayData) => {
-          this.setState({
-            comments: arrayData,
-            isLoading: false,
-          });
+          // this.setState({
+          //   comments: arrayData,
+          //   isLoading: false,
+          // });
+          setComments(arrayData);
+          setIsLoading(false);
         })
         .catch((err) => {
           console.log("ERRORE NEL CONTATTARE IL SERVER", err);
-          this.setState({ isLoading: false });
+          setIsLoading(false);
         });
     }
   };
 
-  componentDidMount() {
-    this.getComment(this.props.asin);
-  }
+  // componentDidMount() {
+  //   this.getComment(this.props.asin);
+  // }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.asin !== prevProps.asin) {
-      console.log("Nuovo asin:", this.props.asin);
-      this.getComment(this.props.asin);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.asin !== prevProps.asin) {
+  //     console.log("Nuovo asin:", this.props.asin);
+  //     this.getComment(this.props.asin);
+  //   }
+  // }
 
-  render() {
-    return (
-      <div className="row justify-content-center">
-        <div
-          className="col-5 border border-2 border-black rounded-4 p-4 "
-          style={{ width: 500 }}
-        >
-          {this.props.asin ? (
-            <>
-              {this.state.isLoading && <Spinner />}
-              <CommentList commentsToShow={this.state.comments} />
-              <AddComment asin={this.props.asin} />
-            </>
-          ) : (
-            <p>Seleziona un libro per vedere i commenti</p>
-          )}
-        </div>
+  return (
+    <div className="row justify-content-center">
+      <div
+        className="col-5 border border-2 border-black rounded-4 p-4 "
+        style={{ width: 500 }}
+      >
+        {asin ? (
+          <>
+            {isLoading && <Spinner />}
+            <CommentList commentsToShow={comments} />
+            <AddComment asin={asin} />
+          </>
+        ) : (
+          <p>Seleziona un libro per vedere i commenti</p>
+        )}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default CommentArea;
