@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Alert from "react-bootstrap/Alert";
 
-function Welcome() {
+const Welcome = () => {
   const [showAlert, setShowAlert] = useState(true);
 
   const chiudiAlert = () => {
@@ -28,6 +28,6 @@ function Welcome() {
       </div>
     </>
   );
-}
+};
 
 export default Welcome;

@@ -2,7 +2,6 @@ import { Component } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import Spinner from "./Spinner";
-import { Col } from "react-bootstrap";
 
 class CommentArea extends Component {
   state = {
